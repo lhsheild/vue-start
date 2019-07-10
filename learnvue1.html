@@ -13,7 +13,7 @@
     <button @click="submitClick">提交</button>
     <ul>
         <!--        <li v-for="item in content">{{item}}</li>-->
-        <todo-item :content="item" :index="index" v-for="(item, index) in content" :key="index" @delete="ItemDelete"></todo-item>
+        <todo-item :null_content=nullContent :content="item" :index="index" v-for="(item, index) in content" :key="index" @delete="ItemDelete"></todo-item>
     </ul>
 </div>
 
@@ -21,11 +21,11 @@
     let TodoItem = {
         data(){
             return{
-                nullContent: ''
+                // nullContent: ''
             }
         },
-        props: ['content', "index"],
-        template: '<li v-if="content != nullContent" @click="ItemClick">{{content}}</li>',
+        props: ['content', "index", "null_content"],
+        template: '<li v-if="content != null_content" @click="ItemClick">{{content}}</li>',
         methods: {
             ItemClick: function () {
                 this.$emit("delete", this.index);
@@ -39,6 +39,7 @@
             return {
                 content: [],
                 inputValue: '',
+                nullContent: '',
             }
         },
         components:{

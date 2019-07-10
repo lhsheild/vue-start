@@ -7,11 +7,26 @@
 </head>
 <body>
 <div id="root">
-
+    <div @click="clickHandler">{{message}}</div>
+    <item></item>
 </div>
 <script>
+    Vue.component('item', {
+        template: '<div>Hello Nvidia!</div>'
+    })
+
     let app = new Vue({
-        el: '#root'
+        el: '#root',
+        data() {
+            return{
+                message:"Intel",
+            }
+        },
+        methods:{
+            clickHandler: function () {
+                this.message = 'AMD Yes!';
+            },
+        }
     })
 </script>
 </body>
