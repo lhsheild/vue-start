@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Learn</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+</head>
+<body>
+
+<div id="app">
+    <input type="text" v-model="inputValue">
+    <button @click="submitClick">提交</button>
+    <ul>
+        <!--        <li v-for="item in content">{{item}}</li>-->
+        <todo-item :content="item" :index="index" v-for="(item, index) in content" :key="index" @delete="ItemDelete"></todo-item>
+    </ul>
+</div>
+
+<script>
+    let TodoItem = {
+        data(){
+            return{
+                nullContent: ''
+            }
+        },
+        props: ['content', "index"],
+        template: '<li v-if="content != nullContent" @click="ItemClick">{{content}}</li>',
+        methods: {
+            ItemClick: function () {
+                this.$emit("delete", this.index);
+            }
+        }
+    }
+
+    let app = new Vue({
+        el: '#app',
+        data() {
+            return {
+                content: [],
+                inputValue: '',
+            }
+        },
+        components:{
+            TodoItem: TodoItem
+        },
+        methods: {
+            submitClick: function () {
+                this.content.push(
+                    this.inputValue
+                );
+                this.inputValue = '';
+            },
+            ItemDelete: function (index) {
+                this.content.splice(index, 1);
+            }
+        },
+    });
+</script>
+</body>
+</html>
