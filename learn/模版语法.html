@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <h3>{{name}}</h3>
+    <h4 v-text="name"></h4>
+    <div v-html="name"></div>
+</div>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data() {
+            return {
+                name: 'sheildog',
+                title:'',
+            };
+        }
+    })
+</script>
+</body>
+</html>

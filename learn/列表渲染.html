@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <template v-for="(item, index) of list" :key="index">
+        <div>{{item}}</div>
+        <span>{{item}}</span>
+    </template>
+</div>
+
+<div id="app2">
+    <div v-for="(item, key, index) of userInfo" :key="index">{{item}}__{{index}}__{{key}}</div>
+</div>
+
+<script>
+    var app = new Vue({
+        el: '#app',
+        data() {
+            return {
+                list: [
+                    "nice",
+                    "to",
+                    "meet",
+                    "you"
+                ]
+            }
+        }
+    })
+
+    var app2 = new Vue({
+        el: "#app2",
+        data() {
+            return {
+                userInfo:{
+                    name: "amd",
+                    age: "yes",
+                    salary: "secret"
+                }
+            };
+        }
+    })
+</script>
+</body>
+</html>

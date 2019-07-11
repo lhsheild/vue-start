@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <child content="lh"></child>
+    <child content="sheildog"></child>
+</div>
+<script>
+    Vue.prototype.bus = new Vue()
+
+    Vue.component('child', {
+        data(){
+            return{
+                selfContent: this.content
+            }
+        },
+        props:{
+            content:{
+                type: [String, Number]
+            }
+        },
+        template:'<div @click="handleClick">{{selfContent}}</div>',
+        methods:{
+            handleClick: function () {
+                console.log(this)
+                console.log('click')
+                this.bus.$emit('change', this.selfContent)
+            },
+        },
+        mounted: function () {
+            let _this = this;
+            console.log(this);
+            console.log('recieve')
+            this.bus.$on('change', function (value) {
+                _this.selfContent = value;
+            })
+        }
+    })
+
+    let app = new Vue({
+        el: '#app'
+    })
+</script>
+</body>
+</html>

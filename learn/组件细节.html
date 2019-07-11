@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <table>
+        <tbody>
+        <tr is="row"></tr>
+        <tr is="my_row"></tr>
+        </tbody>
+    </table>
+</div>
+
+<div id="root">
+    <counter ref="one" @number_change="numberChange"></counter>
+    <counter ref="two" @number_change="numberChange"></counter>
+    <div>{{total}}</div>
+</div>
+
+<script>
+    var MyRow = {
+        data() {
+            return {
+                content: '局部组件'
+            }
+        },
+        template: '<tr><td>{{content}}</td></tr>'
+    };
+
+    Vue.component('row', {
+        data() {
+            return {}
+        },
+        template: '<tr><td>"test"</td></tr>'
+    })
+
+    var vm = new Vue({
+        el: "#app",
+        data() {
+            return {}
+        },
+        components: {
+            'my_row': MyRow
+        },
+        template: ''
+    })
+
+    let counter = {
+        data() {
+            return {
+                number: 0
+            };
+        },
+        template: '<div @click="handleClick">{{number}}</div>',
+        methods: {
+            handleClick: function () {
+                this.number++;
+                this.$emit('number_change', this.number);
+            }
+        }
+    }
+
+    let root = new Vue({
+        el: '#root',
+        data() {
+            return {
+                total: 0,
+            }
+        },
+        methods: {
+            clickHandler: function () {
+                console.log(this.$refs.hello)
+            },
+            numberChange: function (value) {
+                this.total = this.$refs.one.number + this.$refs.two.number;
+            }
+        },
+        components: {
+            'counter': counter
+        },
+
+    })
+</script>
+</body>
+</html>

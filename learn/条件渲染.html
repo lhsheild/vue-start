@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<!--<div id="app" v-show="show">{{msg}}-->
+<div id="app">
+    <div v-if="show">{{msg}}</div>
+    <div v-else>intel</div>
+</div>
+
+<div id="app2">
+    <div v-if="show">1: <input type="text" key="user"></div>
+    <div v-else>2: <input type="text" key="email"></div>
+</div>
+
+<script>
+    var app = new Vue({
+        el: '#app',
+        data() {
+            return {
+                show: false,
+                msg: "amd yes"
+            }
+        }
+    });
+
+    var app2 = new Vue({
+        el: '#app2',
+        data() {
+            return {
+                show: false
+            };
+        }
+    })
+</script>
+</body>
+</html>

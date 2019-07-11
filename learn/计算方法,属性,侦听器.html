@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">{{fullName}}</div>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data() {
+            return {
+                name0: 'alex',
+                name1: 'yuan',
+                // fullName : '',
+            };
+        },
+        // 计算属性
+        computed: {
+            // fullName: function () {
+            //     return this.name0 + " " + this.name1
+            // }
+            fullName: {
+                get: function () {
+                    return this.name0 + " " + this.name1;
+                },
+                set: function (value) {
+                    let tempArr = value.split(' ');
+                    this.name0 = tempArr[0];
+                    this.name1 = tempArr[1];
+                }
+            }
+        },
+        // 侦听器
+        // watch: {
+        //     name0: function () {
+        //         this.fullName = this.name0 + " " + this.name1;
+        //     },
+        //     name1: function () {
+        //         this.fullName = this.name0 + " " + this.name1;
+        //     }
+        // }
+    })
+</script>
+</body>
+</html>

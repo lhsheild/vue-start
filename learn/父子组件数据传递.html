@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="root">
+    <counter :count="0" @numberchange="numberChange" @number-init="numberInit"></counter>
+    <counter :count="1" @numberchange="numberChange" @number-init="numberInit"></counter>
+    <div>{{total}}</div>
+</div>
+
+<div id="app">
+
+</div>
+<script>
+    let counter = {
+        props: ['count'],
+        data(){
+            return{
+                number: this.count,
+            }
+        },
+        template: '<div @click="handleClick">{{number}}</div>',
+        methods:{
+            handleClick: function () {
+                this.number ++;
+                this.$emit('numberchange', 1)
+            }
+        },
+        mounted: function () {
+            this.$emit('number-init', this.number);
+        }
+    }
+
+    var root = new Vue({
+        el: '#root',
+        data(){
+            return{
+                total: 0
+            }
+        },
+        components:{
+            counter: counter
+        },
+        methods: {
+            numberChange: function (value) {
+                this.total += value;
+            },
+            numberInit: function (value) {
+                this.total += value;
+            }
+        }
+    })
+
+    var app = new Vue({
+        el: '#app'
+    })
+</script>
+</body>
+</html>

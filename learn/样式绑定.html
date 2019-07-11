@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        .activated{
+            color: #42b983;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <div @click="handleClick" :class="{activated: isActivated}">yes</div>
+    <div @click="handleClick2" :class="[activated2]">no</div>
+    <div :style="[styleObj, fontSizeObj]" @click="handleClick3">amd</div>
+</div>
+<script>
+    var app = new Vue({
+        el:'#app',
+        data() {
+            return {
+                isActivated: false,
+                activated2: '',
+                styleObj:{
+                    color:"red"
+                },
+                fontSizeObj:{
+                    fontSize: "21px"
+                }
+            };
+        },
+        methods:{
+            handleClick: function () {
+                this.isActivated = !this.isActivated;
+            },
+            handleClick2: function () {
+                this.activated2 = this.activated2 === "activated" ? "" : "activated";
+            },
+            handleClick3: function () {
+                this.styleObj.color = "green";
+            }
+        }
+    })
+</script>
+</body>
+</html>

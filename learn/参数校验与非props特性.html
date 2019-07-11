@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="root">
+    <child :content="2312312312"></child>
+<!--    <child :content="'hello'"></child>-->
+<!--    <child ></child>-->
+</div>
+<script>
+    let child = {
+        props:{
+            content: {
+                type: [String, Number],
+                required: false,
+                default: 'default',
+                validator: function (value) {
+                    console.log(typeof (value));
+                    console.log(value)
+                    console.log(value.length)
+                    return true
+                    // return (value.length>=5)
+                }
+            }
+        },
+        template:'<div>{{content}}</div>'
+    }
+
+    let app = new Vue({
+        el: '#root',
+        components:{
+            child:child
+        }
+    })
+</script>
+</body>
+</html>
