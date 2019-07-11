@@ -1,6 +1,7 @@
 <template>
     <div>
         我是课程
+        <h2>阿西吧</h2>
     </div>
 </template>
 
@@ -16,5 +17,7 @@
 </script>
 
 <style scoped>
-
+h2{
+    color: coral;
+}
 </style>

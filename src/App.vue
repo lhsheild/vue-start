@@ -1,21 +1,22 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="beyond the game"/>
+<!--    <HelloWorld msg="beyond the game"/>-->
+    <router-view></router-view>
     <router-link :to = '{name:"Home"}'>首页</router-link>
     <router-link :to = '{name:"Course"}'>课程</router-link>
-
-    <router-view></router-view>
   </div>
+
+
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+// import HelloWorld from './components/HelloWorld.vue'
 
 export default {
   name: 'app',
   components: {
-    HelloWorld
+    // HelloWorld
   }
 }
 </script>
